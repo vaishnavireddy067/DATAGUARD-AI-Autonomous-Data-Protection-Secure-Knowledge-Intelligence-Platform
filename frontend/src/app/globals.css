@@ -55,6 +55,17 @@ body {
   border-radius: 8px;
 }
 
+/* Dark theme autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: #f4f4f5 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #09090b inset !important;
+  box-shadow: 0 0 0px 1000px #09090b inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .react-flow__handle {
   background: #38bdf8 !important;
   border: 2px solid #0f172a !important;

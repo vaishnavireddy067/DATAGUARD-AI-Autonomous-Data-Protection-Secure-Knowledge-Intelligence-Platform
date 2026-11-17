@@ -67,7 +67,13 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
     let errorDetail = `Request failed with status ${res.status}`;
     try {
       const errJson = await res.json();
-      errorDetail = errJson.detail || errorDetail;
+      if (typeof errJson.detail === 'string') {
+        errorDetail = errJson.detail;
+      } else if (Array.isArray(errJson.detail)) {
+        errorDetail = errJson.detail.map((e: any) => e.msg || JSON.stringify(e)).join(', ');
+      } else if (errJson.detail) {
+        errorDetail = JSON.stringify(errJson.detail);
+      }
     } catch {
       // keep fallback
     }
