@@ -10,7 +10,8 @@ import {
   AccessLevel
 } from '@/types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+const RAW_API_URL = process.env.NEXT_PUBLIC_API_URL || '/api';
+const API_BASE_URL = RAW_API_URL.endsWith('/') ? RAW_API_URL.slice(0, -1) : RAW_API_URL;
 
 export function getStoredToken(): string | null {
   if (typeof window === 'undefined') return null;
